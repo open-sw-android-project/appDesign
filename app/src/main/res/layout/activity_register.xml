@@ -7,15 +7,31 @@
     tools:context=".RegisterActivity">
 
     <EditText
-        android:id="@+id/et_id"
+        android:id="@+id/et_stdid"
+        android:layout_width="0dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginEnd="54dp"
+        android:ems="10"
+        android:hint="학번"
+        android:inputType="textPersonName"
+        android:maxLength="10"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_proid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_proid"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="54dp"
         android:layout_marginEnd="54dp"
         android:layout_marginBottom="19dp"
-        android:ems="10"
-        android:hint="아이디"
+        android:enabled="false"
         android:inputType="textPersonName"
+        android:maxLength="5"
+        android:hint="교수번호"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/et_pass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,19 +50,19 @@
         app:layout_constraintBottom_toTopOf="@+id/et_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_id" />
+        app:layout_constraintTop_toBottomOf="@+id/et_proid" />
 
     <EditText
         android:id="@+id/et_name"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="21dp"
         android:ems="10"
         android:hint="이름"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/et_grade"
+        app:layout_constraintBottom_toTopOf="@+id/et_department"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_pass" />
@@ -60,7 +76,7 @@
         android:text="회원가입"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_department" />
+        app:layout_constraintTop_toBottomOf="@+id/et_grade" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -71,7 +87,7 @@
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="59dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/et_id"
+        app:layout_constraintBottom_toTopOf="@+id/et_proid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -93,30 +109,30 @@
         android:id="@+id/et_grade"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="17dp"
-        android:hint="학년"
+        android:layout_marginStart="52dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="94dp"
         android:ems="10"
+        android:hint="학년"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/et_department"
+        app:layout_constraintBottom_toTopOf="@+id/btn_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+        app:layout_constraintTop_toBottomOf="@+id/et_department" />
 
     <EditText
         android:id="@+id/et_department"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="54dp"
-        android:layout_marginEnd="54dp"
-        android:layout_marginBottom="109dp"
-        android:hint="학과"
+        android:layout_marginStart="52dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="23dp"
         android:ems="10"
+        android:hint="학과"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btn_register"
+        app:layout_constraintBottom_toTopOf="@+id/et_grade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_grade" />
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
