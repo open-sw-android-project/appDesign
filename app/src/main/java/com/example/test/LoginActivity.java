@@ -22,7 +22,7 @@ import java.net.URLEncoder;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText et_id, et_pass;
-    private Button btn_login, btn_register;
+    private Button btn_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         et_id = findViewById(R.id.et_id);
         et_pass = findViewById(R.id.et_pass);
         btn_login = findViewById(R.id.btn_login);
-        btn_register = findViewById(R.id.btn_register);
-
-
-        // 회원가입 버튼을 클릭 시 수행
-        btn_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +40,8 @@ public class LoginActivity extends AppCompatActivity {
                 String id = et_id.getText().toString();
                 String password = et_pass.getText().toString();
 
-                if(id.length() == 5) {
+                if(id.length() < 10)
+                {
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -59,14 +49,11 @@ public class LoginActivity extends AppCompatActivity {
                                 JSONObject jsonObject = new JSONObject(response);
                                 boolean success = jsonObject.getBoolean("success");
                                 if (success) { // 로그인에 성공한 경우
-                                    String pro_name = jsonObject.getString("pro_name");
-
-                                    Toast.makeText(getApplicationContext(), "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("name", pro_name);
+                                    Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(LoginActivity.this, ProCourseActivity.class);
                                     startActivity(intent);
                                 } else { // 로그인에 실패한 경우
-                                    Toast.makeText(getApplicationContext(), "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                             } catch (JSONException e) {
@@ -78,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                     RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                     queue.add(loginRequest);
                 }
-                else if(id.length() == 10)
+                else
                 {
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
                         @Override
@@ -87,11 +74,8 @@ public class LoginActivity extends AppCompatActivity {
                                 JSONObject jsonObject = new JSONObject(response);
                                 boolean success = jsonObject.getBoolean("success");
                                 if (success) { // 로그인에 성공한 경우
-                                    String std_name = jsonObject.getString("std_name");
-
                                     Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("name", std_name);
+                                    Intent intent = new Intent(LoginActivity.this, StdCourseActivity.class);
                                     startActivity(intent);
                                 } else { // 로그인에 실패한 경우
                                     Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();

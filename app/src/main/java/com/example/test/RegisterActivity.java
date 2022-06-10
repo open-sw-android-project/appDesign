@@ -23,7 +23,7 @@ import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText et_id, et_pass, et_name, et_grade, et_department;
+    private EditText et_stdid, et_proid, et_pass, et_name, et_grade, et_department;
     private RadioGroup radioGroup;
     private RadioButton rbt_std, rbt_pro;
     private Button btn_register;
@@ -34,7 +34,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         // 아이디 값 찾아주기
-        et_id = findViewById(R.id.et_id);
+        et_stdid = findViewById(R.id.et_stdid);
+        et_proid = findViewById(R.id.et_proid);
         et_pass = findViewById(R.id.et_pass);
         et_name = findViewById(R.id.et_name);
         et_grade = findViewById(R.id.et_grade);
@@ -68,13 +69,17 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.rbt_std || rbt_std.isChecked() == true) {
+                    et_stdid.setVisibility(View.VISIBLE);
+                    et_stdid.setEnabled(true);
+                    et_proid.setVisibility(View.INVISIBLE);
+                    et_proid.setEnabled(false);
                     et_grade.setVisibility(View.VISIBLE);
 
                     btn_register.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             // EditText에 현재 입력되어있는 값을 get(가져온다)해온다.
-                            String std_id = et_id.getText().toString();
+                            String std_id = et_stdid.getText().toString();
                             String std_password = et_pass.getText().toString();
                             String std_name = et_name.getText().toString();
                             String std_grade = et_grade.getText().toString();
@@ -108,13 +113,17 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });
                 } else if (checkedId == R.id.rbt_pro) {
+                    et_stdid.setVisibility(View.INVISIBLE);
+                    et_stdid.setEnabled(false);
+                    et_proid.setVisibility(View.VISIBLE);
+                    et_proid.setEnabled(true);
                     et_grade.setVisibility(View.INVISIBLE);
 
                     btn_register.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             // EditText에 현재 입력되어있는 값을 get(가져온다)해온다.
-                            String pro_id = et_id.getText().toString();
+                            String pro_id = et_proid.getText().toString();
                             String pro_password = et_pass.getText().toString();
                             String pro_name = et_name.getText().toString();
                             String pro_department = et_department.getText().toString();
