@@ -43,5 +43,8 @@ dependencies {
 
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
+    //qr reader view 오픈소스
+    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'
+
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 }
