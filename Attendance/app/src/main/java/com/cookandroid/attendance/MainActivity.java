@@ -1,5 +1,6 @@
 package com.cookandroid.attendance;
 
+import androidx.annotation.IdRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,22 +34,23 @@ public class MainActivity extends AppCompatActivity {
         ActionBar aB = getSupportActionBar();
         aB.hide(); // 타이틀 숨기기
 
-
-
         lectureList = findViewById(R.id.lectureLayout);
         tvLecture = findViewById(R.id.totalLectureList);
 
-        for (int i =0; i< 10; i++) {
 
-        }
+        addLecture("컴파일러");
+        addLecture("자료구조");
+        addLecture("오픈소스전문프로젝트");
+        addLecture("컴퓨터네트워크");
+        addLecture("창업기획");
 
         tvLecture.setText("     수강목록 [총 " + lectureNum + "건]" );
 
     }
 
-    public void addLecture(){ // 동적 버튼 생성, DB 받아서 반복하는 걸로 바꿔야함, 왼쪽정렬 및 디자인 교체
+    public void addLecture(String LectureName){ // 동적 버튼 생성, DB 받아서 반복하는 걸로 바꿔야함, 왼쪽정렬 및 디자인 교체
         Button lecture = new Button(getApplicationContext());
-        lecture.setText("알기 쉬운 우리 몸");
+        lecture.setText(LectureName);
         lecture.setMinLines(2);
         lecture.setGravity(Gravity.LEFT);
         lecture.setTextSize(20);
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         lectureList.addView(lecture);  // 레이아웃에 강의 추가
         lectureNum++; // 강의 개수 증가
+        lecBtnList.add(lecture);
     }
 
 }
