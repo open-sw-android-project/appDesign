@@ -1,0 +1,144 @@
+.display_none{
+    display: none;
+}
+.menu_container{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.3);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+}
+.menu{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    background-color: rgb(248,248,248);
+
+    width: 400px;
+    height: 500px;
+    border: 1px solid black;
+}
+.menu_header{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 10%;
+    padding-right: 20px;
+}
+.menu_main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+.menu_footer{
+    width: 100%;
+    height: 10%;
+}
+
+.menu_btn{
+    width: 300px;
+    height: 40px;
+    box-shadow: 0 0 2px var(--cbnu-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: var(--cbnu-color);
+    color: rgb(248,248,248);
+    font-weight: 600;
+    font-size: 15px;
+}
+.exit_btn{
+    cursor: pointer;
+}
+
+.qr_main{
+    width: 150vh;
+    height: 80vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.qr_container{
+    width: 80vh;
+    height: 80vh;
+    border: 1vh solid var(--cbnu-color);
+    border-radius: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.qr_info{
+    font-size: 4vh;
+    font-weight: 600;
+    font-family: 'EliceDigitalBaeum_Bold';
+}
+.qr_code{
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.qr_side{
+    width: 60vh;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.clock_container{
+    margin-bottom: 13vh;
+}
+.clock{
+    
+}
+.info_container{
+    display: flex;
+    margin-bottom: 15vh;
+}
+.info_str{
+    font-size: 4vh;
+    font-weight: 600;
+    font-family: 'EliceDigitalBaeum_Bold';
+
+}
+
+.btn_container{
+    width: 100%;
+}
+.qr_btn{
+    width: 21vh;
+    height: 7vh;
+    border: none;
+    box-shadow: 0 0 2px var(--cbnu-color);
+    font-size: 3vh;
+    background-color: white;
+    border-radius: 1vh;
+    font-weight: 600;
+    color: var(--cbnu-color);
+}
+.qr_btn:hover{
+    cursor: pointer;
+}
+
+.btn_color{
+    background-color: var(--cbnu-color);
+    color: rgb(248,248,248);
+}

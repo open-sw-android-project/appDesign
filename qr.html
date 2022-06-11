@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>QR create</title>
+</head>
+<body>
+    <div class="menu_container display_none">
+        <div class="menu">
+            <div class="menu_header">
+                <i id="exit" class="fa-solid fa-x exit_btn"></i>
+            </div>
+            <div class="menu_main">
+                <a class="" href="">
+                    <div class="menu_btn">hi_cbnu</div>
+                </a>
+                <a class="" href="">
+                    <div class="menu_btn">hi_cbnu</div>
+                </a>
+                <a class="" href="">
+                    <div class="menu_btn">hi_cbnu</div>
+                </a>
+                <a class="" href="">
+                    <div class="menu_btn">hi_cbnu</div>
+                </a>
+                <a class="" href="">
+                    <div class="menu_btn">로그아웃</div>
+                </a>
+            </div>
+            <div class="menu_footer"></div>
+        </div>
+    </div>
+    <header></header>
+    <main class="qr_main">
+        <div class="qr_container">
+            <div class="display_none qr_code"></div>
+            <h1 class="qr_info">QR 생성 버튼을 눌러주세요</h1>
+        </div>
+        <div class="qr_side">
+            <div class="clock_container">
+                <h1 class="info_str clock">0000/00/00 - 00시 00분 00초</h1>
+            </div>
+            <div class="info_container">
+                <h1 class="info_str">과목명</h1>
+                <h1 class="info_str">(0/0)</h1>
+            </div>
+            <div class="btn_container">
+                <button id="qr_btn" class="qr_btn">QR 생성</button>
+                <button id="menu_js" class="qr_btn btn_color">메뉴</button>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+<script src="https://kit.fontawesome.com/4029a3b361.js" crossorigin="anonymous"></script>
+<script src="./js/clock.js"></script>
+<script src="./js/qrcode.js"></script>
+<script src="./js/qr.js"></script>
+</html>
