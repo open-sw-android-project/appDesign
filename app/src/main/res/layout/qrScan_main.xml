@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <FrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp">
+
+            <com.budiyev.android.codescanner.CodeScannerView
+                android:id="@+id/scanner_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoFocusButtonVisible="true"
+                app:flashButtonVisible="false"
+                app:maskColor="@color/main_purple"/>
+        </FrameLayout>
+
+        <Button
+            android:layout_width="240px"
+            android:layout_height="240px"
+            android:text="카메라 전환"
+            android:layout_below="@+id/scanner_view"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_1"
+            android:layout_margin="10dp"
+            android:drawableTop="@drawable/camera"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="현재 출석 진행중인 수업: 자료구조"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="출석이 완료되었습니다."/>
+
+        <Button
+            android:layout_width="350px"
+            android:layout_height="130px"
+            android:layout_marginTop="30dp"
+            android:text="출석 현황 보기"
+            android:layout_below="@+id/scanner_view"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/main_purple"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
