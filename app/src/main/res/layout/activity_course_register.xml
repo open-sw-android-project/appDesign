@@ -7,12 +7,17 @@
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="223dp"
-        android:layout_height="118dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginBottom="19dp"
-        android:text="등록"
+        android:layout_width="293dp"
+        android:layout_height="164dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="10dp"
+        android:drawableBottom="@drawable/img_course_register"
+        android:text="강의등록"
         android:textSize="20dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/cardview_dark_background"
         app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,15 +49,17 @@
                     android:id="@+id/t1"
                     android:layout_width="match_parent"
                     android:layout_height="66dp"
-                    android:text="강의번호"
+                    android:textSize="15dp"
+                    android:gravity="center"
                     android:textAlignment="center"
-                    android:textSize="15dp" />
+                    android:text="학기" />
 
                 <TextView
                     android:id="@+id/t2"
                     android:layout_width="match_parent"
                     android:layout_height="66dp"
-                    android:text="구분"
+                    android:text="강의번호"
+                    android:gravity="center"
                     android:textAlignment="center"
                     android:textSize="15dp" />
 
@@ -60,7 +67,8 @@
                     android:id="@+id/t3"
                     android:layout_width="match_parent"
                     android:layout_height="66dp"
-                    android:text="강의명"
+                    android:text="구분"
+                    android:gravity="center"
                     android:textAlignment="center"
                     android:textSize="15dp" />
 
@@ -68,7 +76,8 @@
                     android:id="@+id/t4"
                     android:layout_width="match_parent"
                     android:layout_height="66dp"
-                    android:text="학점"
+                    android:text="강의명"
+                    android:gravity="center"
                     android:textAlignment="center"
                     android:textSize="15dp" />
 
@@ -76,7 +85,8 @@
                     android:id="@+id/t5"
                     android:layout_width="match_parent"
                     android:layout_height="66dp"
-                    android:text="강의실"
+                    android:text="학점"
+                    android:gravity="center"
                     android:textAlignment="center"
                     android:textSize="15dp" />
 
@@ -84,7 +94,8 @@
                     android:id="@+id/t6"
                     android:layout_width="match_parent"
                     android:layout_height="66dp"
-                    android:text="강의시간"
+                    android:text="강의 시작날짜"
+                    android:gravity="center"
                     android:textAlignment="center"
                     android:textSize="15dp" />
 
@@ -92,15 +103,37 @@
                     android:id="@+id/t7"
                     android:layout_width="match_parent"
                     android:layout_height="66dp"
-                    android:text="교수자"
+                    android:text="강의 요일"
+                    android:gravity="center"
                     android:textAlignment="center"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"/>
 
                 <TextView
                     android:id="@+id/t8"
                     android:layout_width="match_parent"
                     android:layout_height="66dp"
-                    android:text="출석부" />
+                    android:text="강의실"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/t9"
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp"
+                    android:text="교수자"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/t10"
+                    android:layout_width="match_parent"
+                    android:layout_height="78dp"
+                    android:text="출석부"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
@@ -110,39 +143,92 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/semester"
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp"
+                    android:background="@null"
+                    android:text="1학기"
+                    android:textAlignment="center"/>
+
+                <EditText
                     android:id="@+id/course_id"
                     android:layout_width="match_parent"
-                    android:layout_height="66dp" />
+                    android:layout_height="66dp"
+                    android:background="@null"
+                    android:hint="강의번호-분반"
+                    android:textAlignment="center"/>
 
                 <EditText
                     android:id="@+id/course_type"
                     android:layout_width="match_parent"
-                    android:layout_height="66dp" />
+                    android:layout_height="66dp"
+                    android:background="@null"
+                    android:textAlignment="center"/>
 
                 <EditText
                     android:id="@+id/course_name"
                     android:layout_width="match_parent"
-                    android:layout_height="66dp" />
+                    android:layout_height="66dp"
+                    android:background="@null"
+                    android:textAlignment="center"/>
 
                 <EditText
                     android:id="@+id/course_grade"
                     android:layout_width="match_parent"
-                    android:layout_height="66dp" />
+                    android:layout_height="66dp"
+                    android:background="@null"
+                    android:textAlignment="center" />
+
+                <EditText
+                    android:id="@+id/start_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp"
+                    android:background="@null"
+                    android:textAlignment="center"
+                    android:hint="2022-01-01"
+                    android:onClick="callDateDialog"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/course_day1"
+                        android:layout_width="153dp"
+                        android:layout_height="66dp"
+                        android:background="@null"
+                        android:hint="DAY 1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/course_day2"
+                        android:layout_width="153dp"
+                        android:layout_height="66dp"
+                        android:background="@null"
+                        android:hint="DAY 2"
+                        android:textAlignment="center" />
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/course_room"
                     android:layout_width="match_parent"
-                    android:layout_height="66dp" />
-
-                <EditText
-                    android:id="@+id/course_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="66dp" />
+                    android:layout_height="66dp"
+                    android:background="@null"
+                    android:hint="건물번호-호수"
+                    android:textAlignment="center"/>
 
                 <EditText
                     android:id="@+id/pro_name"
                     android:layout_width="match_parent"
-                    android:layout_height="66dp" />
+                    android:layout_height="66dp"
+                    android:background="@null"
+                    android:textAlignment="center"/>
+
+                <WebView
+                    android:id="@+id/attendance"
+                    android:layout_width="match_parent"
+                    android:layout_height="76dp" />
 
             </LinearLayout>
         </LinearLayout>
