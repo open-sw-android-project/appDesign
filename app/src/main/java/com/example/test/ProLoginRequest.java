@@ -10,7 +10,7 @@ import java.util.Map;
 public class ProLoginRequest extends StringRequest {
 
     // 서버 URL 설정 ( PHP 파일 연동 )
-    final static private String URL = "http://172.30.6.156/ProLogin.php";
+    final static private String URL = "http://192.168.25.44/ProLogin.php";
     private Map<String, String> map;
 
 

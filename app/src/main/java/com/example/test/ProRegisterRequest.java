@@ -10,7 +10,7 @@ import java.util.Map;
 public class ProRegisterRequest extends StringRequest {
 
     // 서버 URL 설정 ( PHP 파일 연동 )
-    final static private String URL = "http://172.30.6.156/ProRegister.php";
+    final static private String URL = "http://192.168.25.44/ProRegister.php";
     private Map<String, String> map;
 
 
@@ -18,7 +18,7 @@ public class ProRegisterRequest extends StringRequest {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("pro_id",pro_id);
+        map.put("pro_id", pro_id);
         map.put("pro_password", pro_password);
         map.put("pro_name", pro_name);
         map.put("pro_department", pro_department);
