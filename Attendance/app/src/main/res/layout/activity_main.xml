@@ -8,36 +8,50 @@
 
     /* 전체 레이아웃 */
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
         /* 타이틀 및 설정 배치된 레이아웃 */
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center_horizontal"
             android:layout_margin="10dp"
             android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/button"
+                android:layout_width="45dp"
+                android:layout_height="34dp"
+                android:layout_weight="1"
+                android:text="Button"
+                android:visibility="invisible" />
+
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="167dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
+                android:layout_weight="2"
                 android:text="강의 목록"
-                android:textSize="25dp" />
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
 
             <ImageButton
                 android:id="@+id/setting"
-                android:layout_width="44dp"
-                android:layout_height="match_parent"
+                android:layout_width="26dp"
+                android:layout_height="47dp"
+                android:layout_gravity="center|right"
                 android:layout_margin="10dp"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                android:layout_weight="1"
+                android:src="@drawable/baseline_settings_black_24" />
+
 
         </LinearLayout>
 
@@ -46,18 +60,37 @@
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:outlineAmbientShadowColor="@color/black"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/lectureList"
+
+            <TextView
+                android:id="@+id/totalLectureList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:gravity="left" />
 
             <SearchView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="search">
+
+            </SearchView>
+
+            <ScrollView
+                android:id="@+id/lectureScrollview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/lectureLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+            </ScrollView>
+
 
         </LinearLayout>
     </LinearLayout>
