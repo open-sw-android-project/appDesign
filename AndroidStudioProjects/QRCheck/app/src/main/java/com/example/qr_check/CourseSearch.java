@@ -44,7 +44,6 @@ public class CourseSearch extends AppCompatActivity {
     List list;
     RecyclerView recyclerView;
     RecycleAdapter recycleAdapter;
-    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +55,12 @@ public class CourseSearch extends AppCompatActivity {
 
         list = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerView);
-        searchView = (SearchView) findViewById(R.id.searchview);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.25.44/")
+                .baseUrl("http://192.168.0.184/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -76,9 +74,7 @@ public class CourseSearch extends AppCompatActivity {
                     recycleAdapter = new RecycleAdapter(list, str);
                     recyclerView.setAdapter(recycleAdapter);
                 }
-
             }
-
             @Override
             public void onFailure(Call<List<Course>> call, Throwable t) {
                 t.printStackTrace();
@@ -138,14 +134,13 @@ public class CourseSearch extends AppCompatActivity {
 
         private List<CourseSearch.Course> mdata;
         String id;
-        List<Course> list;
 
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.25.44/")
+                .baseUrl("http://192.168.0.184/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -166,8 +161,7 @@ public class CourseSearch extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.lecture_name.setText(mdata.get(position).getCourse_name());
-            holder.pro_name.setText(mdata.get(position).getPro_name());
+            holder.lecture_name.setText(mdata.get(position).getCourse_name() + "--" + mdata.get(position).getPro_name());
         }
 
         @Override
@@ -177,35 +171,34 @@ public class CourseSearch extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             SlideToActView lecture_name;
-            TextView pro_name;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
                 lecture_name = (SlideToActView) itemView.findViewById(R.id.course_name);
-                pro_name = (TextView) itemView.findViewById(R.id.pro_name);
                 lecture_name.setAnimateCompletion(true);
 
                 lecture_name.setOnSlideCompleteListener(new SlideToActView.OnSlideCompleteListener() {
                     @Override
                     public void onSlideComplete(SlideToActView slideToActView) {
 
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            mdata.remove(ViewHolder.this);
-                            recycleAdapter.notifyItemRemoved(position);
-                        }
+                        String[] str = lecture_name.getText().toString().split("-");
 
-                        apiInterface.putCourseInfo(id, lecture_name.getText().toString()).enqueue(new Callback<List<Course>>() {
+                        apiInterface.putCourseInfo(id, str[0]).enqueue(new Callback<List<Course>>() {
                             @Override
                             public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
-                                Toast.makeText(CourseSearch.this, "강의가 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                                System.out.println("성공");
                             }
 
                             @Override
                             public void onFailure(Call<List<Course>> call, Throwable t) {
+                                System.out.println("실패");
                                 t.printStackTrace();
                             }
                         });
+
+                        ViewHolder viewHolder = new ViewHolder(itemView);
+                        mdata.remove(viewHolder.getAbsoluteAdapterPosition() + 1);
+                        recycleAdapter.notifyItemRemoved(getAdapterPosition());
                     }
                 });
             }

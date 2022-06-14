@@ -10,7 +10,7 @@ import java.util.Map;
 public class StdRegisterRequest extends StringRequest {
 
     // 서버 URL 설정 ( PHP 파일 연동 )
-    final static private String URL = "http://192.168.25.44/StdRegister.php";
+    final static private String URL = "http://192.168.0.184/StdRegister.php";
     private Map<String, String> map;
 
 

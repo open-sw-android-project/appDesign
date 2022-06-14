@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class StdCourseRegisterRequest extends StringRequest {
 
-    final static private String URL = "http://192.168.25.44/StdRegister.php";
+    final static private String URL = "http://192.168.0.184/StdRegister.php";
     private Map<String, String> map;
 
     public StdCourseRegisterRequest(String id, String std_id, String course_id, String course_name, Response.Listener<String> listener) {

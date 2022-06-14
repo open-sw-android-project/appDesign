@@ -2,13 +2,18 @@ package com.example.qr_check;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -40,9 +45,9 @@ public class StdCourseActivity extends AppCompatActivity {
     List<StdCourse> list;
     RecyclerView recyclerView;
     StdRecycleAdapter stdRecycleAdapter;
-    TextView totalCourse;
     ImageView setting;
-    int count = 0;
+
+    private GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +70,7 @@ public class StdCourseActivity extends AppCompatActivity {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.25.44/")
+                .baseUrl("http://192.168.0.184/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         SeverInterface apiInterface = retrofit.create(SeverInterface.class);
@@ -74,7 +79,7 @@ public class StdCourseActivity extends AppCompatActivity {
             public void onResponse(Call<List<StdCourse>> call, Response<List<StdCourse>> response) {
                 if(response.isSuccessful()) {
                     list = response.body();
-                    stdRecycleAdapter = new StdRecycleAdapter(list);
+                    stdRecycleAdapter = new StdRecycleAdapter(list, std_id);
                     recyclerView.setAdapter(stdRecycleAdapter);
                 }
             }
@@ -187,5 +192,54 @@ public class StdCourseActivity extends AppCompatActivity {
         public String getCourse_room() { return course_room; }
 
         public void setCourse_room(String course_room) { this.course_room = course_room; }
+    }
+
+    public class StdRecycleAdapter extends RecyclerView.Adapter<StdRecycleAdapter.ViewHolder> {
+
+        private List<StdCourseActivity.StdCourse> mdata;
+        String s_id;
+
+        public StdRecycleAdapter(List<StdCourseActivity.StdCourse> list, String id) { mdata = list; s_id = id; }
+
+        @Override
+        public StdRecycleAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            Context context = parent.getContext();
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            View view = inflater.inflate(R.layout.std_recyclerview, parent, false);
+            StdRecycleAdapter.ViewHolder vh = new StdRecycleAdapter.ViewHolder(view);
+
+            return vh;
+        }
+
+        @Override
+        public void onBindViewHolder(StdRecycleAdapter.ViewHolder holder, int position) {
+            holder.name.setText(mdata.get(position).getCourse_name());
+            holder.room.setText(mdata.get(position).getCourse_room());
+        }
+
+        @Override
+        public int getItemCount() { return mdata.size(); }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+
+            public TextView name, room;
+
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                name = itemView.findViewById(R.id.name);
+                room = itemView.findViewById(R.id.room);
+
+                name.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(StdCourseActivity.this, ScanQR.class);
+                        intent.putExtra("std_id", s_id);
+                        intent.putExtra("course_name", name.getText().toString());
+                        startActivity(intent);
+                    }
+                });
+            }
+        }
     }
 }

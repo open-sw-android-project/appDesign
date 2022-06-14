@@ -49,7 +49,7 @@ public class ProCourseActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.25.44/")
+                .baseUrl("http://192.168.0.184/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

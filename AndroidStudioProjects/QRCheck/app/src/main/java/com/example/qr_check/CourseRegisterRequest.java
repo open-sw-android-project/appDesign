@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class CourseRegisterRequest extends StringRequest{
 
-    final static private String URL = "http://192.168.25.44/CourseRegister.php";
+    final static private String URL = "http://192.168.0.184/CourseRegister.php";
     private Map<String, String> map;
 
     public CourseRegisterRequest(String course_id, String semester, String course_type, String course_name, String pro_name, String course_grade,

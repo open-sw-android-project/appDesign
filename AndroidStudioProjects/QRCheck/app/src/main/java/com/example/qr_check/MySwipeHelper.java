@@ -39,7 +39,7 @@ public abstract class MySwipeHelper extends ItemTouchHelper.SimpleCallback {
     private float swipeThreshold = 0.5f;
     private Map<Integer,List<MyButton>> buttonBuffer;
     private Queue<Integer> removerQueue;
-    private  GestureDetector.SimpleOnGestureListener gestureListener= new GestureDetector.SimpleOnGestureListener(){
+    private GestureDetector.SimpleOnGestureListener gestureListener= new GestureDetector.SimpleOnGestureListener(){
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
