@@ -80,20 +80,20 @@
                 android:textSize="20dp"
                 android:text="0"
                 android:textStyle="bold"/>
-<!--            <ImageView-->
-<!--                android:layout_width="15dp"-->
-<!--                android:layout_height="15dp"-->
-<!--                android:layout_toRightOf="@+id/lateNum"-->
-<!--                android:gravity="center"-->
-<!--                android:src="@drawable/information"-->
-<!--                />-->
-<!--            <ImageView-->
-<!--                android:layout_width="15dp"-->
-<!--                android:layout_height="15dp"-->
-<!--                android:layout_toRightOf="@+id/absentNum"-->
-<!--                android:gravity="center"-->
-<!--                android:src="@drawable/information"-->
-<!--                />-->
+            <!--            <ImageView-->
+            <!--                android:layout_width="15dp"-->
+            <!--                android:layout_height="15dp"-->
+            <!--                android:layout_toRightOf="@+id/lateNum"-->
+            <!--                android:gravity="center"-->
+            <!--                android:src="@drawable/information"-->
+            <!--                />-->
+            <!--            <ImageView-->
+            <!--                android:layout_width="15dp"-->
+            <!--                android:layout_height="15dp"-->
+            <!--                android:layout_toRightOf="@+id/absentNum"-->
+            <!--                android:gravity="center"-->
+            <!--                android:src="@drawable/information"-->
+            <!--                />-->
         </RelativeLayout>
 
         <TableLayout

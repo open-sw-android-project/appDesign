@@ -1,6 +1,5 @@
 package com.example.openapp_qr_attendancepage;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +17,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity {
+public class SubActivity extends AppCompatActivity {
     int MAX_Num; //가져온 데이터의 최댓값
     TableLayout table;
     TableRow[] baseRow;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.subtivity_main);
         ActionBar aB = getSupportActionBar();
         aB.hide(); // 타이틀 숨기기
 
@@ -74,14 +73,6 @@ public class MainActivity extends AppCompatActivity {
         TextView subjectNameTV = findViewById(R.id.subjectName);
         subjectNameTV.setText(subjectName);
 
-        //임시, 교수로 워프
-        subjectNameTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,SubActivity.class);
-                startActivity(intent);
-            }
-        });
 
         //출석, 지각, 결석 횟수 변경
         TextView attendNumTV = findViewById(R.id.attendNum);
