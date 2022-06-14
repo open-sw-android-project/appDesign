@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                                 baseView[i][j].setBackgroundColor(getResources().getColor(R.color.red));
                                 break;
                             case 0:
-                                baseView[i][j].setText("지각");
+                                baseView[i][j].setText("L");
                                 baseView[i][j].setBackgroundColor(getResources().getColor(R.color.yellow));
                                 break;
                             case 1:

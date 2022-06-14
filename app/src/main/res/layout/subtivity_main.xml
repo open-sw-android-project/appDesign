@@ -1,128 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
 
-    <LinearLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/Title"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/main_purple"
+        android:text="출석현황"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/subjectName"
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_purple"
+        android:layout_below="@id/Title"
+        android:gravity="center"
+        android:textColor="@color/l_gray"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical">
-        <TextView
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/main_purple"
-            android:text="출석현황"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/subjectName"
-            android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/main_purple"
-            android:gravity="center"
-            android:textColor="@color/l_gray"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"
-            android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="총 학생 수"
-            android:textColor="@color/black"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:background="@drawable/textview"/>
-        <TextView
-            android:id="@+id/studentNum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/purple_200"
-            android:textSize="20dp"
-            android:text="0"
-            android:textStyle="bold"/>
-        <HorizontalScrollView
+        android:layout_below="@id/subjectName">
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <LinearLayout
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="총 학생 수"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:background="@drawable/textview"/>
+            <TextView
+                android:id="@+id/studentNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/purple_200"
+                android:textSize="20dp"
+                android:text="0"
+                android:textStyle="bold"/>
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                <TableLayout
-                    android:id="@+id/tableLayoutLeft"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginBottom="50dp"
-                    android:background="@color/black">
+                    <TableLayout
+                        android:id="@+id/tableLayoutLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginBottom="50dp"
+                        android:background="@color/black">
 
-                    <TableRow>
-                        <TextView
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:layout_marginLeft="3px"
-                            android:layout_marginRight="3px"
-                            android:layout_marginTop="3px"
-                            android:layout_marginBottom="3px"
+                        <TableRow>
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:layout_marginLeft="3px"
+                                android:layout_marginRight="3px"
+                                android:layout_marginTop="3px"
+                                android:layout_marginBottom="3px"
 
-                            android:background="@color/main_purple"
-                            android:gravity="center"
-                            android:text="순번"
-                            android:textColor="@color/white"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
+                                android:background="@color/main_purple"
+                                android:gravity="center"
+                                android:text="순번"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:layout_marginRight="3px"
-                            android:layout_marginTop="3px"
-                            android:layout_marginBottom="3px"
-                            android:background="@color/main_purple"
-                            android:gravity="center"
-                            android:text="학번"
-                            android:textColor="@color/white"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:layout_marginRight="3px"
+                                android:layout_marginTop="3px"
+                                android:layout_marginBottom="3px"
+                                android:background="@color/main_purple"
+                                android:gravity="center"
+                                android:text="학번"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:layout_marginRight="3px"
-                            android:layout_marginTop="3px"
-                            android:layout_marginBottom="3px"
-                            android:background="@color/main_purple"
-                            android:gravity="center"
-                            android:text="이름"
-                            android:textColor="@color/white"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
-                    </TableRow>
-                </TableLayout>
-                <TableLayout
-                    android:id="@+id/tableLayoutRight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="50dp"
-                    android:background="@color/black">
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:layout_marginRight="3px"
+                                android:layout_marginTop="3px"
+                                android:layout_marginBottom="3px"
+                                android:background="@color/main_purple"
+                                android:gravity="center"
+                                android:text="이름"
+                                android:textColor="@color/white"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+                        </TableRow>
+                    </TableLayout>
+                    <TableLayout
+                        android:id="@+id/tableLayoutRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="50dp"
+                        android:background="@color/black">
 
-                </TableLayout>
-            </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
+                    </TableLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
 
-</ScrollView>
+
+    </ScrollView>
+</RelativeLayout>

@@ -189,7 +189,7 @@ public class SubActivity extends AppCompatActivity {
                             baseView_right[i][j].setBackgroundColor(getResources().getColor(R.color.crimson));
                             break;
                         case 0:
-                            baseView_right[i][j].setText("지각");
+                            baseView_right[i][j].setText("L");
                             baseView_right[i][j].setBackgroundColor(getResources().getColor(R.color.yellow));
                             break;
                         case 1:
