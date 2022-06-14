@@ -10,14 +10,18 @@
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $std_name);
+    mysqli_stmt_bind_result($statement, $std_id, $std_password, $std_name, $std_grade, $std_major);
 
     $response = array();
     $response["success"] = false;
 
     while(mysqli_stmt_fetch($statement)) {
         $response["success"] = true;
+        $response["std_id"] = $std_id;
+        $response["std_password"] = $std_password;
         $response["std_name"] = $std_name;
+        $response["std_grade"] = $std_grade;
+        $response["std_major"] = $std_major;
     }
 
     echo json_encode($response);

@@ -12,11 +12,8 @@
     mysqli_stmt_bind_param($statement, "sssss", $std_id, $std_password, $std_name, $std_grade, $std_department);
     mysqli_stmt_execute($statement);
 
-
     $response = array();
     $response["success"] = true;
 
-
     echo json_encode($response);
-
 ?>
