@@ -12,86 +12,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        tools:layout_editor_absoluteY="1dp"
+        android:gravity="center">
 
-        /* 타이틀 및 설정 배치된 레이아웃 */
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
+            android:id="@+id/btnQR"
+            android:text="QR로 이동"/>
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="45dp"
-                android:layout_height="34dp"
-                android:layout_weight="1"
-                android:text="Button"
-                android:visibility="invisible" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="167dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:layout_weight="2"
-                android:text="강의 목록"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
-
-            <ImageButton
-                android:id="@+id/setting"
-                android:layout_width="26dp"
-                android:layout_height="47dp"
-                android:layout_gravity="center|right"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:src="@drawable/baseline_settings_black_24" />
-
-
-        </LinearLayout>
-
-        /* 강의 개수 받아와서 0개면 x, 1개 이상이면 강의 목록 출력해줄 레이아웃 */
-        <LinearLayout
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:outlineAmbientShadowColor="@color/black"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/totalLectureList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="left" />
-
-            <SearchView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="search">
-
-            </SearchView>
-
-            <ScrollView
-                android:id="@+id/lectureScrollview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:id="@+id/lectureLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                </LinearLayout>
-            </ScrollView>
-
-
-        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
