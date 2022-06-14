@@ -13,8 +13,9 @@ let qrcode = new QRCode(document.querySelector(".qr_code"),{
 });
 
 function makeCode () {    
-    let code = "QWERQWER000000";//강좌코드 + 교수코드 + 랜덤코드 
-    
+    //let code = "QWERQWER000000";//강좌코드 + 교수코드 + 랜덤코드 
+    let code = pwd;
+
     if (!code) {
       alert("There is no code!");
       return;

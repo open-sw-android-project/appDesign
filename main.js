@@ -14,3 +14,5 @@ const createWindow = () => {
 app.whenReady().then(() => {
     createWindow();
 });
+
+require('./web.js');
