@@ -18,16 +18,21 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 public class SubActivity extends AppCompatActivity {
-    int MAX_Num; //가져온 데이터의 최댓값
-    TableLayout table;
-    TableRow[] baseRow;
-    TextView[][] baseView;
+    int STU_NUM; //가져온 학생의 숫자
+    int DATE_NUM; //가져온 날짜의 숫자
+    TableLayout left_table;
+    TableLayout right_table;
+    TableRow[] baseRow_left;
+    TextView[][] baseView_left;
+    TableRow[] baseRow_right;
+    TextView[][] baseView_right;
 
     //아래는 db의 데이터를 저장할 배열들
     String[] date; //날짜를 저장
-    int[] attendance; //출석
-    String[] note; //비고
-    String subjectName;
+    String[] studentID; //학번
+    String[] studentName; //이름
+    int[][] attendance; //출석
+    String subjectName; //과목 이름
 
     int attendNum;
     int lateNum;
@@ -41,32 +46,36 @@ public class SubActivity extends AppCompatActivity {
         aB.hide(); // 타이틀 숨기기
 
 
-        //데이터의 개수
-        MAX_Num = 30;
+        //학생의 숫자
+        STU_NUM = 30;
 
         //배열 선언
-        baseRow = new TableRow[MAX_Num];
-        baseView = new TextView[MAX_Num][4];
-        date = new String[MAX_Num];
-        attendance = new int[MAX_Num];
-        note = new String[MAX_Num];
+        baseRow_left = new TableRow[STU_NUM];
+        baseView_left = new TextView[STU_NUM][3];
+        baseRow_right = new TableRow[STU_NUM];
+        baseView_right = new TextView[STU_NUM][DATE_NUM];
+
+        studentID = new String[STU_NUM];
+        studentName = new String[STU_NUM];
+        date = new String[DATE_NUM];
+        attendance = new int[STU_NUM][DATE_NUM];
         subjectName = "["+"객체지향 설계"+"]";
         attendNum = 3;
         lateNum = 33;
         absentNum = 20;
 
         //DB 배열 초기화
-        for(int i=0; i<MAX_Num; i++) //날짜
+        for(int i=0; i<STU_NUM; i++) //날짜
         {
             date[i] = "03/"+i;
         }
-        for(int i=0; i<MAX_Num; i++) //출석
+        //출석 정보 입력
+        for(int i=0; i<STU_NUM; i++) //학생의 숫자
         {
-            attendance[i] = i%3-1; //1이면 출석, 0이면 지각, -1이면 결석
-        }
-        for(int i=0; i<MAX_Num; i++) //비고, 공결등을 적는 곳
-        {
-            note[i] = " ";
+            for(int j=0; j<DATE_NUM; j++){ //날짜의 개수
+                //학생번째의 날짜(앞에서부터(
+                attendance[i][j] = j%3-1; //1이면 출석, 0이면 지각, -1이면 결석
+            }
         }
 
         //과목 이름 변경
@@ -84,53 +93,38 @@ public class SubActivity extends AppCompatActivity {
         absentNumTV.setText(Integer.toString(absentNum));
 
         //테이블 항목 동적으로 생성
-        table = findViewById(R.id.tableLayout);
+        left_table = findViewById(R.id.tableLayoutLeft);
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         params.topMargin = 0;
         params.bottomMargin = 3;
         params.leftMargin = 3;
         params.rightMargin = 3;
 
-        for(int i=0;i<30; i++) {
-            baseRow[i] = new TableRow(this);
+        for(int i=0;i<STU_NUM; i++) { //행의 개수
+            baseRow_left[i] = new TableRow(this);
 
-            for (int j = 0; j < 4; j++) {
-                baseView[i][j] = new TextView(this);
-                baseView[i][j].setLayoutParams(params);
-                baseView[i][j].setPadding(3, 3, 3, 3);
-                baseView[i][j].setBackgroundColor(getResources().getColor(R.color.white));
-                baseView[i][j].setGravity(Gravity.CENTER);
-                baseView[i][j].setTextSize(15);
+            for (int j = 0; j < 3; j++) { //열의 개수
+                baseView_left[i][j] = new TextView(this);
+                baseView_left[i][j].setLayoutParams(params);
+                baseView_left[i][j].setPadding(3, 3, 3, 3);
+                baseView_left[i][j].setBackgroundColor(getResources().getColor(R.color.white));
+                baseView_left[i][j].setGravity(Gravity.CENTER);
+                baseView_left[i][j].setTextSize(15);
                 switch (j){ //text를 입력
                     case 0:
-                        baseView[i][j].setText(Integer.toString(i));
+                        baseView_left[i][j].setText(Integer.toString(i));
                         break;
                     case 1:
-                        baseView[i][j].setText(date[i]);
+                        baseView_left[i][j].setText(date[i]);
                         break;
                     case 2:
-                        switch(attendance[i]){
-                            case -1:
-                                baseView[i][j].setText("X");
-                                baseView[i][j].setBackgroundColor(getResources().getColor(R.color.red));
-                                break;
-                            case 0:
-                                baseView[i][j].setText("지각");
-                                baseView[i][j].setBackgroundColor(getResources().getColor(R.color.yellow));
-                                break;
-                            case 1:
-                                baseView[i][j].setText("O");
-                                baseView[i][j].setBackgroundColor(getResources().getColor(R.color.skyblue));
-                                break;
-                        }
-                        break;
-                    case 3:
+                        baseView_left[i][j].setText(date[i]);
                         break;
                 }
-                baseRow[i].addView(baseView[i][j]);
+                baseRow_left[i].addView(baseView_left[i][j]);
             }
 
-            table.addView(baseRow[i]);
+            left_table.addView(baseRow_left[i]);
         }
     }
 }

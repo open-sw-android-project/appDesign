@@ -19,7 +19,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
-    int MAX_Num; //가져온 데이터의 최댓값
+    int DATE_NUM; //가져온 날짜의 개수
     TableLayout table;
     TableRow[] baseRow;
     TextView[][] baseView;
@@ -42,30 +42,30 @@ public class MainActivity extends AppCompatActivity {
         aB.hide(); // 타이틀 숨기기
 
 
-        //데이터의 개수
-        MAX_Num = 30;
+        //날짜의 개수
+        DATE_NUM = 30; //임의로 선언
 
         //배열 선언
-        baseRow = new TableRow[MAX_Num];
-        baseView = new TextView[MAX_Num][4];
-        date = new String[MAX_Num];
-        attendance = new int[MAX_Num];
-        note = new String[MAX_Num];
+        baseRow = new TableRow[DATE_NUM];
+        baseView = new TextView[DATE_NUM][4];
+        date = new String[DATE_NUM];
+        attendance = new int[DATE_NUM];
+        note = new String[DATE_NUM];
         subjectName = "["+"객체지향 설계"+"]";
         attendNum = 3;
         lateNum = 33;
         absentNum = 20;
 
         //DB 배열 초기화
-        for(int i=0; i<MAX_Num; i++) //날짜
+        for(int i=0; i<DATE_NUM; i++) //날짜
         {
             date[i] = "03/"+i;
         }
-        for(int i=0; i<MAX_Num; i++) //출석
+        for(int i=0; i<DATE_NUM; i++) //출석
         {
             attendance[i] = i%3-1; //1이면 출석, 0이면 지각, -1이면 결석
         }
-        for(int i=0; i<MAX_Num; i++) //비고, 공결등을 적는 곳
+        for(int i=0; i<DATE_NUM; i++) //비고, 공결등을 적는 곳
         {
             note[i] = " ";
         }
@@ -100,10 +100,10 @@ public class MainActivity extends AppCompatActivity {
         params.leftMargin = 3;
         params.rightMargin = 3;
 
-        for(int i=0;i<30; i++) {
+        for(int i=0;i<DATE_NUM; i++) { //행 개수
             baseRow[i] = new TableRow(this);
 
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < 4; j++) { //열 개수
                 baseView[i][j] = new TextView(this);
                 baseView[i][j].setLayoutParams(params);
                 baseView[i][j].setPadding(3, 3, 3, 3);
