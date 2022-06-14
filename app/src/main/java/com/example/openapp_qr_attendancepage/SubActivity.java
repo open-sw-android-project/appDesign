@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -34,9 +36,6 @@ public class SubActivity extends AppCompatActivity {
     int[][] attendance; //출석
     String subjectName; //과목 이름
 
-    int attendNum;
-    int lateNum;
-    int absentNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,24 +47,36 @@ public class SubActivity extends AppCompatActivity {
 
         //학생의 숫자
         STU_NUM = 30;
+        //날짜의 숫자
+        DATE_NUM = 30;
 
         //배열 선언
         baseRow_left = new TableRow[STU_NUM];
         baseView_left = new TextView[STU_NUM][3];
-        baseRow_right = new TableRow[STU_NUM];
-        baseView_right = new TextView[STU_NUM][DATE_NUM];
+        baseRow_right = new TableRow[STU_NUM+1];
+        baseView_right = new TextView[STU_NUM+1][DATE_NUM];
 
         studentID = new String[STU_NUM];
         studentName = new String[STU_NUM];
         date = new String[DATE_NUM];
         attendance = new int[STU_NUM][DATE_NUM];
         subjectName = "["+"객체지향 설계"+"]";
-        attendNum = 3;
-        lateNum = 33;
-        absentNum = 20;
 
-        //DB 배열 초기화
-        for(int i=0; i<STU_NUM; i++) //날짜
+
+        //******DB 배열 초기화******
+
+        //학번
+        for(int i=0; i<STU_NUM; i++)
+        {
+            studentID[i] = "20180380"+((int)i/10)+(i%10);
+        }
+        //학생이름
+        for(int i=0; i<STU_NUM; i++)
+        {
+            studentName[i] = "린린자자"+i;
+        }
+        //날짜 입력
+        for(int i=0; i<DATE_NUM; i++)
         {
             date[i] = "03/"+i;
         }
@@ -74,9 +85,10 @@ public class SubActivity extends AppCompatActivity {
         {
             for(int j=0; j<DATE_NUM; j++){ //날짜의 개수
                 //학생번째의 날짜(앞에서부터(
-                attendance[i][j] = j%3-1; //1이면 출석, 0이면 지각, -1이면 결석
+                attendance[i][j] = i%6==0?-1:1; //1이면 출석, 0이면 지각, -1이면 결석
             }
         }
+
 
         //과목 이름 변경
         TextView subjectNameTV = findViewById(R.id.subjectName);
@@ -84,47 +96,112 @@ public class SubActivity extends AppCompatActivity {
 
 
         //출석, 지각, 결석 횟수 변경
-        TextView attendNumTV = findViewById(R.id.attendNum);
-        TextView lateNumTV = findViewById(R.id.lateNum);
-        TextView absentNumTV = findViewById(R.id.absentNum);
+        TextView studentNum = findViewById(R.id.studentNum);
+        studentNum.setText(Integer.toString(STU_NUM));
 
-        attendNumTV.setText(Integer.toString(attendNum));
-        lateNumTV.setText(Integer.toString(lateNum));
-        absentNumTV.setText(Integer.toString(absentNum));
-
-        //테이블 항목 동적으로 생성
+        //왼쪽 테이블 항목(순번, 이름, 학번( 동적으로 생성
         left_table = findViewById(R.id.tableLayoutLeft);
-        TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-        params.topMargin = 0;
-        params.bottomMargin = 3;
-        params.leftMargin = 3;
-        params.rightMargin = 3;
+        TableRow.LayoutParams params_left = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+        params_left.topMargin = 0;
+        params_left.bottomMargin = 3;
+        params_left.leftMargin = 3;
+        params_left.rightMargin = 3;
 
         for(int i=0;i<STU_NUM; i++) { //행의 개수
             baseRow_left[i] = new TableRow(this);
 
             for (int j = 0; j < 3; j++) { //열의 개수
                 baseView_left[i][j] = new TextView(this);
-                baseView_left[i][j].setLayoutParams(params);
+                baseView_left[i][j].setLayoutParams(params_left);
                 baseView_left[i][j].setPadding(3, 3, 3, 3);
                 baseView_left[i][j].setBackgroundColor(getResources().getColor(R.color.white));
                 baseView_left[i][j].setGravity(Gravity.CENTER);
                 baseView_left[i][j].setTextSize(15);
                 switch (j){ //text를 입력
-                    case 0:
-                        baseView_left[i][j].setText(Integer.toString(i));
+                    case 0://순번
+                        baseView_left[i][j].setText(Integer.toString(i+1));
                         break;
-                    case 1:
-                        baseView_left[i][j].setText(date[i]);
+                    case 1://학번
+                        baseView_left[i][j].setText(studentID[i]);
                         break;
-                    case 2:
-                        baseView_left[i][j].setText(date[i]);
+                    case 2://이름
+                        baseView_left[i][j].setText(studentName[i]);
                         break;
                 }
                 baseRow_left[i].addView(baseView_left[i][j]);
             }
 
             left_table.addView(baseRow_left[i]);
+
+        }
+
+        //오른쪽 테이블 항목(순번, 이름, 학번( 동적으로 생성
+        right_table = findViewById(R.id.tableLayoutRight);
+        TableRow.LayoutParams params_right_title = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+        params_right_title.topMargin = 3;
+        params_right_title.bottomMargin = 3;
+        params_right_title.leftMargin = 3;
+        params_right_title.rightMargin = 3;
+
+        TableRow.LayoutParams params_right = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+        params_right.topMargin = 0;
+        params_right.bottomMargin = 3;
+        params_right.leftMargin = 3;
+        params_right.rightMargin = 3;
+
+        for(int i=0;i<STU_NUM+1; i++) { //행의 개수 : 학생의 수+1(맨 위의 날짜의 수 1개 더하기)
+            baseRow_right[i] = new TableRow(this);
+
+            if(i==0)
+            {
+                for (int j = 0; j < DATE_NUM; j++) { //열의 개수
+                    int value = 8;
+                    int dpValue = (int) TypedValue.applyDimension(
+                            TypedValue.COMPLEX_UNIT_DIP,
+                            value,
+                            getResources().getDisplayMetrics());
+                    baseView_right[0][j] = new TextView(this);
+                    baseView_right[0][j].setLayoutParams(params_right_title);
+                    baseView_right[0][j].setPadding(dpValue, dpValue, dpValue, dpValue);
+                    baseView_right[0][j].setBackgroundColor(getResources().getColor(R.color.main_purple));
+                    baseView_right[0][j].setGravity(Gravity.CENTER);
+                    baseView_right[0][j].setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
+                    baseView_right[0][j].setTypeface(null, Typeface.BOLD);
+                    baseView_right[0][j].setTextColor(getResources().getColor(R.color.white));
+                    //날짜 설정
+                    baseView_right[0][j].setText(date[j]);
+                    baseRow_right[0].addView(baseView_right[i][j]);
+                }
+            }
+            else
+            {
+                for (int j = 0; j < DATE_NUM; j++) { //열의 개수
+                    baseView_right[i][j] = new TextView(this);
+                    baseView_right[i][j].setLayoutParams(params_right);
+                    baseView_right[i][j].setPadding(3, 3, 3, 3);
+                    baseView_right[i][j].setBackgroundColor(getResources().getColor(R.color.white));
+                    baseView_right[i][j].setGravity(Gravity.CENTER);
+                    baseView_right[i][j].setTextSize(15);
+                    //출석 설정
+                    switch(attendance[i-1][j]){
+                        case -1:
+                            baseView_right[i][j].setText("X");
+                            baseView_right[i][j].setBackgroundColor(getResources().getColor(R.color.crimson));
+                            break;
+                        case 0:
+                            baseView_right[i][j].setText("지각");
+                            baseView_right[i][j].setBackgroundColor(getResources().getColor(R.color.yellow));
+                            break;
+                        case 1:
+                            baseView_right[i][j].setText("O");
+                            baseView_right[i][j].setBackgroundColor(getResources().getColor(R.color.skyblue));
+                            break;
+                    }
+
+                    baseRow_right[i].addView(baseView_right[i][j]);
+                }
+            }
+            right_table.addView(baseRow_right[i]);
         }
     }
 }

@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 baseView[i][j].setTextSize(15);
                 switch (j){ //text를 입력
                     case 0:
-                        baseView[i][j].setText(Integer.toString(i));
+                        baseView[i][j].setText(Integer.toString(i+1));
                         break;
                     case 1:
                         baseView[i][j].setText(date[i]);
