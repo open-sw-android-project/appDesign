@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="출석이 완료되었습니다."/>
+            android:text="출석을 진행해주세요."/>
 
         <Button
             android:layout_width="350px"

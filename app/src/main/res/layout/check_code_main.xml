@@ -31,7 +31,25 @@
             android:text=""
             android:layout_marginBottom="20dp"
             android:id="@+id/location_code"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginBottom="20dp"
+            android:id="@+id/resultText"/>
 
+        <Button
+            android:layout_width="350px"
+            android:layout_height="130px"
+            android:layout_marginTop="30dp"
+            android:text="이전 화면으로"
+            android:layout_below="@+id/scanner_view"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/main_purple"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:id="@+id/go_back"
+            />
 
     </LinearLayout>
 
