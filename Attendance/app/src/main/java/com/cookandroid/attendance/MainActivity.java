@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -69,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
         lecture.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(), SubActivity.class);
                 Log.d("Btn: ", LectureName );
+                startActivity(intent);
             }
 
         });
