@@ -9,31 +9,47 @@
         android:gravity="center"
         android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="코드 검사 화면입니다"
-        android:layout_marginBottom="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="코드 검사 화면입니다"
+            android:layout_marginBottom="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="해독한 코드는"
+            android:layout_marginBottom="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginBottom="20dp"
+            android:id="@+id/code"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginBottom="20dp"
+            android:id="@+id/location_code"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginBottom="20dp"
+            android:id="@+id/resultText"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="해독한 코드는"
-        android:layout_marginBottom="20dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginBottom="20dp"
-        android:id="@+id/code"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginBottom="20dp"
-        android:id="@+id/location_code"/>
+        <Button
+            android:layout_width="350px"
+            android:layout_height="130px"
+            android:layout_marginTop="30dp"
+            android:text="이전 화면으로"
+            android:layout_below="@+id/scanner_view"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/main_purple"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:id="@+id/go_back"
+            />
 
     </LinearLayout>
 

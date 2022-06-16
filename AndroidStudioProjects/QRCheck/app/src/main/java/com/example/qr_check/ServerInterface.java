@@ -51,4 +51,25 @@ interface SeverInterface {
             @Field("std_id") String std_id,
             @Field("course_name") String course_name
     );
+
+    @FormUrlEncoded
+    @POST("getCode.php")
+    Call<List<CheckCodeActivity.CodeCheck>> getCode(
+            @Field("course_name") String course_name
+    );
+
+    @FormUrlEncoded
+    @POST("QRCheck.php")
+    Call<List<CheckCodeActivity.CodeCheck>> putCodeInfo(
+            @Field("std_id") String std_id,
+            @Field("course_name") String course_name,
+            @Field("result") Integer result
+    );
+
+    @FormUrlEncoded
+    @POST("UpdateCode.php")
+    Call<List<ProCourseActivity.ProCourse>> updateCode(
+            @Field("course_name") String course_name,
+            @Field("code") String code
+    );
 }

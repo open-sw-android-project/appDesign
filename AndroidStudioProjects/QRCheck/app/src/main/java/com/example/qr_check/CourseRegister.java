@@ -35,9 +35,9 @@ public class CourseRegister extends AppCompatActivity {
     private Button btn_register;
     private EditText et_semester, et_courseid, et_coursetype, et_coursename, et_coursegrade, et_courseroom,
             et_courseday1, et_day1_time, et_courseday2, et_day2_time, et_proname;
-    private WebView attendance;
-    private WebSettings webSettings;
     private TimePickerDialog.OnTimeSetListener callbackMethod1, callbackMethod2;
+    private WebView webView;
+    private WebSettings webSettings;
     private final static int FILECHOOSER_NORMAL_REQ_CODE = 0;
     private ValueCallback<Uri[]> FilePathCallback;
 
@@ -58,13 +58,21 @@ public class CourseRegister extends AppCompatActivity {
         et_day2_time = (EditText) findViewById(R.id.day2_time);
         et_courseday2 = (EditText) findViewById(R.id.course_day2);
         et_proname = (EditText) findViewById(R.id.pro_name);
-        attendance = (WebView) findViewById(R.id.attendance);
 
-        setmWebViewFileUploadPossible();
-        attendance.setWebViewClient(new WebViewClient());
-        webSettings = attendance.getSettings();
-        webSettings.setDomStorageEnabled(true);
-        attendance.loadUrl("http://192.168.25.44/webview.html");
+//        webView = (WebView) findViewById(R.id.attd_view);
+//
+//        setmWebViewFileUploadPossible();
+//
+//        webView.setWebViewClient(new WebViewClient());
+//        webSettings = webView.getSettings();
+//        webSettings.setJavaScriptEnabled(true);
+//        webSettings.setSupportMultipleWindows(false);
+//        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//        webSettings.setUseWideViewPort(true);
+//        webSettings.setSupportZoom(true);
+//        webSettings.setBuiltInZoomControls(true);
+//        webSettings.setDomStorageEnabled(true);
+//        webView.loadUrl("http://192.168.0.184/webview.html");
 
         et_semester.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,6 +197,7 @@ public class CourseRegister extends AppCompatActivity {
                 String course_day2 = et_courseday2.getText().toString();
                 String day2_time = et_day2_time.getText().toString();
                 String course_room = et_courseroom.getText().toString();
+                String code;
 
                 if(TextUtils.isEmpty(course_day2)) {
                     course_day2 = "없음";
@@ -197,6 +206,19 @@ public class CourseRegister extends AppCompatActivity {
                 if(TextUtils.isEmpty(day2_time)) {
                     day2_time = "없음";
                 }
+
+                MakeRandomNumber randomNum = new MakeRandomNumber("000000");
+
+                for(int a=0; a < randomNum.randomCodeSize; a++){
+                    //String ascii = Math.random();
+                    int tempNum = (int) (Math.random()*100) % (randomNum.rightLimit - randomNum.leftLimit);
+                    tempNum = tempNum + 65;
+                    randomNum.addString((char) tempNum);
+                }
+
+                randomNum.randomCode = randomNum.randomCode + randomNum.subjectCode;
+
+                code = randomNum.getter();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -222,6 +244,10 @@ public class CourseRegister extends AppCompatActivity {
                         course_day1, day1_time, course_day2, day2_time, course_room, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(CourseRegister.this);
                 queue.add(courseRegisterRequest);
+
+                QRcodeRegisterRequest qRcodeRegisterRequest = new QRcodeRegisterRequest(course_id, course_name, pro_name, code, responseListener);
+                RequestQueue queue1 = Volley.newRequestQueue(CourseRegister.this);
+                queue1.add(qRcodeRegisterRequest);
             }
         });
     }
@@ -242,15 +268,15 @@ public class CourseRegister extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(attendance.canGoBack()) {
-            attendance.goBack();
+        if(webView.canGoBack()) {
+            webView.goBack();
         } else {
             super.onBackPressed();
         }
     }
 
     protected void setmWebViewFileUploadPossible() {
-        attendance.setWebChromeClient(new WebChromeClient() {
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
 
@@ -271,6 +297,9 @@ public class CourseRegister extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
         if(requestCode == FILECHOOSER_NORMAL_REQ_CODE)
         {
             if(resultCode == RESULT_OK) {

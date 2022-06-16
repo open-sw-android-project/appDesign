@@ -140,7 +140,7 @@ public class CourseSearch extends AppCompatActivity {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.184/")
+                .baseUrl("http://192.168.1.151/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

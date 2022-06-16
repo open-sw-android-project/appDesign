@@ -44,6 +44,8 @@
         <activity android:name=".ScanQR" />
         <activity android:name=".CheckCodeActivity" />
         <activity android:name=".StdAttendance" />
+        <activity android:name=".ProAttendance" />
+        <activity android:name=".ExcelTest" />
     </application>
 
 </manifest>

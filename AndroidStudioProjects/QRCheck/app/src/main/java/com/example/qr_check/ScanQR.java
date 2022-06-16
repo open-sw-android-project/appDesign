@@ -49,6 +49,7 @@ public class ScanQR extends AppCompatActivity{
 
         //변수 가져오기
         Intent intent = getIntent();
+        String std_id = intent.getStringExtra("std_id");
         String SubjectName = intent.getStringExtra("course_name");
 
         //qr 카메라 담을 view xml내부 요소 가져오기
@@ -105,6 +106,8 @@ public class ScanQR extends AppCompatActivity{
                         intent.putExtra("altitude", altitude);
                         intent.putExtra("accuracy", accuracy);
                         intent.putExtra("provider", provider);
+                        intent.putExtra("std_id", std_id);
+                        intent.putExtra("course_name", SubjectName);
 
                         lm.removeUpdates(mLocationListener);
 
@@ -142,7 +145,7 @@ public class ScanQR extends AppCompatActivity{
             public void onClick(View view) {
                 //과목 번호 넘겨주는 함수. 넘어가서 받는 함수도 써야 함.
                 Intent intent = new Intent(getApplicationContext(), StdAttendance.class);
-                intent.putExtra("course_name", SubjectName);
+                intent.putExtra("subjectCode", SubjectCode);
 
                 startActivity(intent);
             }
